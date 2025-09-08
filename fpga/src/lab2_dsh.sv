@@ -1,7 +1,7 @@
 // E155: Lab 2 - Multiplexed 7-Segment Display
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 6, 2025
-// lab2_DSH.sv contains code to instantiate sevensegment.sv to light up a dual 7-segment display and display the sum of the two numbers
+// lab2_dsg.sv contains code to instantiate sevensegment.sv to light up a dual 7-segment display and display the sum of the two numbers
 // in binary on 5 LEDS. 
 `timescale 1ns/1ps
 

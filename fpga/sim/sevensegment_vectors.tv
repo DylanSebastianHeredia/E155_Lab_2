@@ -1,7 +1,7 @@
-// E155: Lab 2 - FPGA & MCU Setup & Testing
+// E155: Lab 2 - Multiplexed 7-Segment Display
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 1, 2025
-// SevenSegment_vectors.tv contains the testvectors for the SevenSegment_TestBench.sv file.
+// sevensegment_vectors.tv contains the testvectors for the sevensegment_testbench.sv file.
 
 // s[3:0], seg[6:0]
 

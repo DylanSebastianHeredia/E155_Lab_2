@@ -56,7 +56,7 @@ module lab2_dsh (	input logic				clk,
 	assign s =  state ? s0:s1;		// if state == 1, then mux choses s0 value, otherwise s1.
 
 	// Instantiate sevensegment module
-    sevensegment sevensegt(s, seg);
+    sevensegment sevensegment (s, seg);
 	
 endmodule 
 	

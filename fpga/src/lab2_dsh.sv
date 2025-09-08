@@ -5,7 +5,8 @@
 // in binary on 5 LEDS. 
 `timescale 1ns/1ps
 
-module lab2_dsh (	input logic 			reset,
+module lab2_dsh (	input logic				clk,
+					input logic 			reset,
 					input logic		[3:0]	s0,
 					input logic 	[3:0]	s1,
 					output logic 			select,
@@ -55,6 +56,9 @@ module lab2_dsh (	input logic 			reset,
 	assign s =  state ? s0:s1;		// if state == 1, then mux choses s0 value, otherwise s1.
 
 	// Instantiate sevensegment module
-    sevensegment sevensegment(s, seg);
+    sevensegment sevensegt(s, seg);
 	
 endmodule 
+	
+	
+

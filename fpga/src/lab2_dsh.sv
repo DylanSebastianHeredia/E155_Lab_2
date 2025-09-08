@@ -38,7 +38,7 @@ module lab2_dsh (	input logic 			reset,
 		// 10E6 / 2 = 5E6 for toggle (ON-OFF)
 		// Subtract 1 since [4,999,999:0] is 5E6 bits
 												
-		else if (counter == 5000000-1) begin
+		else if (counter == 50000-1) begin
 			counter   <= 0;
 			state <= ~state;  			// Toggle LED OFF after 5E6 counts
 		end 
@@ -58,7 +58,3 @@ module lab2_dsh (	input logic 			reset,
     sevensegment sevensegment(s, seg);
 	
 endmodule 
-	
-	
-
-

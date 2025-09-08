@@ -1,4 +1,4 @@
-// E155: Lab 1 - FPGA & MCU Setup & Testing
+// E155: Lab 2 - Multiplexed 7-Segment Display
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 7, 2025
 // lab2_dsh_testbench.sv contains the automatic testbench code for lab2_dsh.sv, ensuring proper simulation.
@@ -52,3 +52,4 @@ always
 		else $error("F + F failed.");
 	end
 endmodule
+

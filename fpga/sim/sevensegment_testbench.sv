@@ -1,4 +1,4 @@
-// E155: Lab 1 - FPGA & MCU Setup & Testing
+// E155: Lab 2 - Multiplexed 7-Segment Display
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 1, 2025
 // sevensegment_testbench.sv contains the automatic testbench code for sevensegment.sv, ensuring proper simulation. 

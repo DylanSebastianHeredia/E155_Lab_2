@@ -18,7 +18,7 @@ module sevensegment_testbench();
 	logic [31:0] vectornum, errors;
 	logic [10:0] testvectors[10000:0];
 
-SevenSegment dut(s, seg);
+sevensegment dut(s, seg);
 always
 	begin
 		clk=1; #5;

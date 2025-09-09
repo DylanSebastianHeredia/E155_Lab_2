@@ -11,7 +11,8 @@ module lab2_dsh_testbench;
 
     logic clk, reset;
     logic [3:0] s0, s1;
-    logic select, notselect;
+    logic select, 
+    logic notselect;
     logic [4:0] led;
     logic [6:0] seg;
 
@@ -84,6 +85,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

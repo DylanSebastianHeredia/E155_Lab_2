@@ -54,7 +54,7 @@ module lab2_dsh_testbench;
         // Test all input combinations (Total Comb #: 256)
         for (int i = 0; i < 16; i++) begin
             for (int j = 0; j < 16; j++) begin
-                s0 = a;
+                s0 = a;    // Simplification!
                 s1 = b;
                 #20;  // Allow some cycles for DUT to settle
 
@@ -82,6 +82,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

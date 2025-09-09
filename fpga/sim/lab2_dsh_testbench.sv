@@ -87,16 +87,3 @@ module lab2_dsh_testbench;
     end
 
 endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-

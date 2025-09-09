@@ -11,12 +11,12 @@ module lab2_dsh_testbench();
 
     logic clk;
     logic reset;
-    logic [3:0] s0;
-    logic [3:0] s1;
+    logic [3:0]s0;
+    logic [3:0]s1;
     logic select;
     logic notselect;
-    logic [4:0] led;
-    logic [6:0] seg;
+    logic [4:0]led;
+    logic [6:0]seg;
 
     // Instantiate lab2_dsh
     lab2_dsh dut (clk, reset, s0, s1, select, notselect, led, seg);
@@ -25,7 +25,7 @@ module lab2_dsh_testbench();
     always #5 clk = ~clk;
 
     // sevensegment decoder (duplicated from sevensegment.sv)
-    function [6:0] seg_expected (input [3:0] x);
+    function [6:0]seg_expected input [3:0]x);
         case(x)
             4'h0: seg_expected = 7'b1000000;        // 0
             4'h1: seg_expected = 7'b1111001;        // 1
@@ -87,4 +87,5 @@ module lab2_dsh_testbench();
     end
 
 endmodule
+
 

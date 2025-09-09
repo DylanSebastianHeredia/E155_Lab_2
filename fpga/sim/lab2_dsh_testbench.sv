@@ -2,12 +2,12 @@
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 8, 2025
 // lab2_dsh_full_testbench.sv
-// Full automatic testbench for lab2_dsh.sv. Tests all sums of s0+s1 on LEDs,
-// validates 7-segment outputs for each nibble, and ensures select/notselect toggle correctly.
+// lab2_dsh_testbench hold code for an automatic testbench for lab2_dsh.sv that tests all sums of s0 + s1 on LEDs,
+// validates 7-segment display outputs, and ensures select/notselect toggle correctly.
 
 `timescale 1ns/1ps
 
-module lab2_dsh_testbench;
+module lab2_dsh_testbench();
 
     logic clk;
     logic reset;
@@ -18,31 +18,31 @@ module lab2_dsh_testbench;
     logic [4:0] led;
     logic [6:0] seg;
 
-    // Instantiate DUT
+    // Instantiate lab2_dsh
     lab2_dsh dut (clk, reset, s0, s1, select, notselect, led, seg);
 
     // clk
     always #5 clk = ~clk;
 
     // sevensegment decoder (duplicated from sevensegment.sv)
-    function automatic [6:0] seg_expected (input [3:0]x);
+    function [6:0] seg_expected (input [3:0] x);
         case(x)
-            4'h0: seg_expected = 7'b1000000;
-            4'h1: seg_expected = 7'b1111001;
-            4'h2: seg_expected = 7'b0100100;
-            4'h3: seg_expected = 7'b0110000;
-            4'h4: seg_expected = 7'b0011001;
-            4'h5: seg_expected = 7'b0010010;
-            4'h6: seg_expected = 7'b0000010;
-            4'h7: seg_expected = 7'b1111000;
-            4'h8: seg_expected = 7'b0000000;
-            4'h9: seg_expected = 7'b0011000;
-            4'ha: seg_expected = 7'b0001000;
-            4'hb: seg_expected = 7'b0000011;
-            4'hc: seg_expected = 7'b1000110;
-            4'hd: seg_expected = 7'b0100001;
-            4'he: seg_expected = 7'b0000110;
-            4'hf: seg_expected = 7'b0001110;
+            4'h0: seg_expected = 7'b1000000;        // 0
+            4'h1: seg_expected = 7'b1111001;        // 1
+            4'h2: seg_expected = 7'b0100100;        // 2
+            4'h3: seg_expected = 7'b0110000;        // 3
+            4'h4: seg_expected = 7'b0011001;        // 4
+            4'h5: seg_expected = 7'b0010010;        // 5
+            4'h6: seg_expected = 7'b0000010;        // 6
+            4'h7: seg_expected = 7'b1111000'        // 7
+            4'h8: seg_expected = 7'b0000000;        // 8
+            4'h9: seg_expected = 7'b0011000;        // 9
+            4'ha: seg_expected = 7'b0001000;        // A
+            4'hb: seg_expected = 7'b0000011;        // b
+            4'hc: seg_expected = 7'b1000110;        // C
+            4'hd: seg_expected = 7'b0100001;        // d
+            4'he: seg_expected = 7'b0000110;        // E
+            4'hf: seg_expected = 7'b0001110;        // F
             default: seg_expected = 7'b1111111;
         endcase
     endfunction
@@ -82,8 +82,9 @@ module lab2_dsh_testbench;
             end
         end
 
-        $display("ALL TESTS PASSED SUCCESSFULLY.");
+        $display("ALL TESTS PASSED SUCCESSFULLY!");
         $finish;
     end
 
 endmodule
+

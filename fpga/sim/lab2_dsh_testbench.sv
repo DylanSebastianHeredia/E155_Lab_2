@@ -52,17 +52,17 @@ module lab2_dsh_testbench;
         reset = 1;
 
         // Test all input combinations (Total Comb #: 256)
-        for (int a = 0; a < 16; a++) begin
-            for (int b = 0; b < 16; b++) begin
+        for (int i = 0; i < 16; i++) begin
+            for (int j = 0; j < 16; j++) begin
                 s0 = a;
                 s1 = b;
-                #20;  // allow some cycles for DUT to settle
+                #20;  // Allow some cycles for DUT to settle
 
                 // Checking LED sum
                 if (led !== a + b)
                     $error("LED sum error: s0=%0d s1=%0d expected=%0d got=%0d", a, b, a + b, led);
 
-                // Checking select and notselect
+                // Checking select and notselect (Right and Left sides of dual 7-segment display)
                 if (select !== ~notselect)
                     $error("select error: select=%b notselect=%b", select, notselect);
 
@@ -82,4 +82,5 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 

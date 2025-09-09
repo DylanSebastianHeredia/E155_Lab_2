@@ -70,7 +70,9 @@ module lab2_dsh_testbench;
                 if (select) begin
                     if (seg !== seg_expected(s0))
                         $error("SEG ERROR: s0=%h expected=%b got=%b", s0, seg_expected(s0), seg);
-                end else begin
+                end 
+                
+                else begin
                     if (seg !== seg_expected(s1))
                         $error("SEG ERROR: s1=%h expected=%b got=%b", s1, seg_expected(s1), seg);
                 end
@@ -82,6 +84,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

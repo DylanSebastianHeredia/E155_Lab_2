@@ -55,8 +55,8 @@ module lab2_dsh_testbench;
         reset = 1;
 
         // Test all possible input combinations
-        for (int i = 0; i < 16; i++) begin
-            for (int j = 0; j < 16; j++) begin
+        for (int a = 0; a < 16; a++) begin
+            for (int b = 0; b < 16; b++) begin
                 s0 = a;    // Simplification!
                 s1 = b;
                 #20;  // Allow some cycles for DUT to settle
@@ -87,6 +87,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

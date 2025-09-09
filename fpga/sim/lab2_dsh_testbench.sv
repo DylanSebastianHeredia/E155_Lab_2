@@ -21,8 +21,8 @@ module lab2_dsh_testbench;
     // Clock generator
     always #5 clk = ~clk;
 
-    // Local function: sevensegment decoder (duplicate of sevensegment.sv)
-    function automatic [6:0] seg_expected (input [3:0] value_holder;
+    // Sevensegment decoder (Duplicateed from sevensegment.sv)
+    function automatic [6:0] seg_expected (input [3:0] value_holder);
         case(value_holder)
             4'h0: seg_expected = 7'b1000000;
             4'h1: seg_expected = 7'b1111001;
@@ -82,6 +82,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

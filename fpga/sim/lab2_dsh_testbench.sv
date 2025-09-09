@@ -25,7 +25,7 @@ module lab2_dsh_testbench();
     always #5 clk = ~clk;
 
     // sevensegment decoder (duplicated from sevensegment.sv)
-    function [6:0]seg_expected input [3:0]x);
+    function [6:0]seg_expected (input [3:0]x);
         case(x)
             4'h0: seg_expected = 7'b1000000;        // 0
             4'h1: seg_expected = 7'b1111001;        // 1
@@ -34,7 +34,7 @@ module lab2_dsh_testbench();
             4'h4: seg_expected = 7'b0011001;        // 4
             4'h5: seg_expected = 7'b0010010;        // 5
             4'h6: seg_expected = 7'b0000010;        // 6
-            4'h7: seg_expected = 7'b1111000'        // 7
+            4'h7: seg_expected = 7'b1111000;        // 7
             4'h8: seg_expected = 7'b0000000;        // 8
             4'h9: seg_expected = 7'b0011000;        // 9
             4'ha: seg_expected = 7'b0001000;        // A
@@ -87,5 +87,6 @@ module lab2_dsh_testbench();
     end
 
 endmodule
+
 
 

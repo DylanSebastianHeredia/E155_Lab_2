@@ -51,7 +51,7 @@ module lab2_dsh_testbench;
         #20;
         reset = 1;
 
-        // Test all input combinations (Total Comb #: 256)
+        // Test all possible input combinations
         for (int i = 0; i < 16; i++) begin
             for (int j = 0; j < 16; j++) begin
                 s0 = a;    // Simplification!
@@ -82,6 +82,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

@@ -24,7 +24,7 @@ module lab2_dsh_testbench;
     // clk
     always #5 clk = ~clk;
 
-    // sevensegment decoder (Duplicateed from sevensegment.sv)
+    // sevensegment decoder (duplicated from sevensegment.sv)
     function automatic [6:0] seg_expected (input [3:0] value_holder);
         case(value_holder)
             4'h0: seg_expected = 7'b1000000;
@@ -87,6 +87,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

@@ -18,10 +18,10 @@ module lab2_dsh_testbench;
     // Instantiate DUT
     lab2_dsh dut (clk, reset, s0, s1, select, notselect, led, seg);
 
-    // Clock generator
+    // clk
     always #5 clk = ~clk;
 
-    // Sevensegment decoder (Duplicateed from sevensegment.sv)
+    // sevensegment decoder (Duplicateed from sevensegment.sv)
     function automatic [6:0] seg_expected (input [3:0] value_holder);
         case(value_holder)
             4'h0: seg_expected = 7'b1000000;
@@ -82,6 +82,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

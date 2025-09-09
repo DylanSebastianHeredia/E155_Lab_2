@@ -22,25 +22,25 @@ module lab2_dsh_testbench;
     always #5 clk = ~clk;
 
     // Local function: sevensegment decoder (duplicate of sevensegment.sv)
-    function automatic [6:0] seg_encode (input [3:0] val);
-        case(val)
-            4'h0: seg_encode = 7'b1000000;
-            4'h1: seg_encode = 7'b1111001;
-            4'h2: seg_encode = 7'b0100100;
-            4'h3: seg_encode = 7'b0110000;
-            4'h4: seg_encode = 7'b0011001;
-            4'h5: seg_encode = 7'b0010010;
-            4'h6: seg_encode = 7'b0000010;
-            4'h7: seg_encode = 7'b1111000;
-            4'h8: seg_encode = 7'b0000000;
-            4'h9: seg_encode = 7'b0011000;
-            4'ha: seg_encode = 7'b0001000;
-            4'hb: seg_encode = 7'b0000011;
-            4'hc: seg_encode = 7'b1000110;
-            4'hd: seg_encode = 7'b0100001;
-            4'he: seg_encode = 7'b0000110;
-            4'hf: seg_encode = 7'b0001110;
-            default: seg_encode = 7'b1111111;
+    function automatic [6:0] seg_expected (input [3:0] value_holder;
+        case(value_holder)
+            4'h0: seg_expected = 7'b1000000;
+            4'h1: seg_expected = 7'b1111001;
+            4'h2: seg_expected = 7'b0100100;
+            4'h3: seg_expected = 7'b0110000;
+            4'h4: seg_expected = 7'b0011001;
+            4'h5: seg_expected = 7'b0010010;
+            4'h6: seg_expected = 7'b0000010;
+            4'h7: seg_expected = 7'b1111000;
+            4'h8: seg_expected = 7'b0000000;
+            4'h9: seg_expected = 7'b0011000;
+            4'ha: seg_expected = 7'b0001000;
+            4'hb: seg_expected = 7'b0000011;
+            4'hc: seg_expected = 7'b1000110;
+            4'hd: seg_expected = 7'b0100001;
+            4'he: seg_expected = 7'b0000110;
+            4'hf: seg_expected = 7'b0001110;
+            default: seg_expected = 7'b1111111;
         endcase
     endfunction
 
@@ -68,11 +68,11 @@ module lab2_dsh_testbench;
 
                 // Checking sevensegment output encoding
                 if (select) begin
-                    if (seg !== seg_encode(s0))
-                        $error("seg error: s0=%h expected=%b got=%b", s0, seg_encode(s0), seg);
+                    if (seg !== seg_expected(s0))
+                        $error("seg error: s0=%h expected=%b got=%b", s0, seg_expected(s0), seg);
                 end else begin
-                    if (seg !== seg_encode(s1))
-                        $error("seg error: s1=%h expected=%b got=%b", s1, seg_encode(s1), seg);
+                    if (seg !== seg_expected(s1))
+                        $error("seg error: s1=%h expected=%b got=%b", s1, seg_expected(s1), seg);
                 end
             end
         end
@@ -82,3 +82,4 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+

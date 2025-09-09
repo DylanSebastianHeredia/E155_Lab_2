@@ -60,19 +60,19 @@ module lab2_dsh_testbench;
 
                 // Checking LED sum
                 if (led !== a + b)
-                    $error("LED sum error: s0=%0d s1=%0d expected=%0d got=%0d", a, b, a + b, led);
+                    $error("LED SUM ERROR: s0=%0d s1=%0d expected=%0d got=%0d", a, b, a + b, led);
 
                 // Checking select and notselect (Right and Left sides of dual 7-segment display)
                 if (select !== ~notselect)
-                    $error("select error: select=%b notselect=%b", select, notselect);
+                    $error("SELECT ERROR: select=%b notselect=%b", select, notselect);
 
                 // Checking sevensegment output encoding
                 if (select) begin
                     if (seg !== seg_expected(s0))
-                        $error("seg error: s0=%h expected=%b got=%b", s0, seg_expected(s0), seg);
+                        $error("SEG ERROR: s0=%h expected=%b got=%b", s0, seg_expected(s0), seg);
                 end else begin
                     if (seg !== seg_expected(s1))
-                        $error("seg error: s1=%h expected=%b got=%b", s1, seg_expected(s1), seg);
+                        $error("SEG ERROR: s1=%h expected=%b got=%b", s1, seg_expected(s1), seg);
                 end
             end
         end
@@ -82,5 +82,6 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 

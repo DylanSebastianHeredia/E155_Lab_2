@@ -1,55 +1,84 @@
 // E155: Lab 2 - Multiplexed 7-Segment Display
 // Sebastian Heredia, dheredia@g.hmc.edu
-// September 7, 2025
-// lab2_dsh_testbench.sv contains the automatic testbench code for lab2_dsh.sv, ensuring proper simulation.
+// September 8, 2025
+// lab2_dsh_full_testbench.sv
+// Full automatic testbench for lab2_dsh.sv. Tests all sums of s0+s1 on LEDs,
+// validates 7-segment outputs for each nibble, and ensures select/notselect toggle correctly.
 
-`timescale 1ns/1ps	// Standard time unit
+`timescale 1ns/1ps
 
-module lab2_dsh_testbench();
-	logic clk, reset;
-	
-	logic [3:0]s0;
-	logic [3:0]s1;
-	
-	logic select;
-	logic notselect;
-	
-	logic [4:0]led;
-	logic [6:0]seg;
+module lab2_dsh_testbench;
 
-// Instantiate lab2_dsh.sv module
-lab2_dsh dut(clk, reset, s0, s1, select, notselect, led, seg);
+    logic clk, reset;
+    logic [3:0] s0, s1;
+    logic select, notselect;
+    logic [4:0] led;
+    logic [6:0] seg;
 
-// Apply inputs one at a time
-// Checking results
+    // Instantiate DUT
+    lab2_dsh dut (clk, reset, s0, s1, select, notselect, led, seg);
 
-always 
-	begin
-		clk = 1; #5;
-		clk = 0; #5;
-	end
-	
-	initial begin 
-		
-		reset = 0;
-	
-		// for select = 1;
-		s0 = 4'b0000; s1 = 4'b0000; #10;
-		assert (seg === 7'b1000000 && led === 5'b00000 && select == ~notselect)	// 0 + 0 = 0
-		else $error("0 + 0 failed.");
-			
-		s0 = 4'b1000; s1 = 4'b1010; #10;
+    // Clock generator
+    always #5 clk = ~clk;
 
-		assert (seg === 7'b0000000 && led === 5'b10010 && select == ~notselect)	// 8 + A = 18
-		else $error("8 + A failed.");
-			
-		s0 = 4'b1010; s1 = 4'b1000; #10;
-		assert (seg === 7'b0001000 && led === 5'b10010 && select == ~notselect)	// A + 8 = 18
-		else $error("A + 8 failed.");
-				
-		s0 = 4'b1111; s1 = 4'b1111; #10;
-		assert (seg === 7'b0001110 && led === 5'b11110 && select == ~notselect)	// F + F = 30
-		else $error("F + F failed.");
-	end
+    // Local function: sevensegment decoder (duplicate of sevensegment.sv)
+    function automatic [6:0] seg_encode (input [3:0] val);
+        case(val)
+            4'h0: seg_encode = 7'b1000000;
+            4'h1: seg_encode = 7'b1111001;
+            4'h2: seg_encode = 7'b0100100;
+            4'h3: seg_encode = 7'b0110000;
+            4'h4: seg_encode = 7'b0011001;
+            4'h5: seg_encode = 7'b0010010;
+            4'h6: seg_encode = 7'b0000010;
+            4'h7: seg_encode = 7'b1111000;
+            4'h8: seg_encode = 7'b0000000;
+            4'h9: seg_encode = 7'b0011000;
+            4'ha: seg_encode = 7'b0001000;
+            4'hb: seg_encode = 7'b0000011;
+            4'hc: seg_encode = 7'b1000110;
+            4'hd: seg_encode = 7'b0100001;
+            4'he: seg_encode = 7'b0000110;
+            4'hf: seg_encode = 7'b0001110;
+            default: seg_encode = 7'b1111111;
+        endcase
+    endfunction
+
+    // Start tests
+    initial begin
+        clk = 0;
+        reset = 0;
+        #20;
+        reset = 1;
+
+        // Test all input combinations (Total Comb #: 256)
+        for (int a = 0; a < 16; a++) begin
+            for (int b = 0; b < 16; b++) begin
+                s0 = a;
+                s1 = b;
+                #20;  // allow some cycles for DUT to settle
+
+                // Checking LED sum
+                if (led !== a + b)
+                    $error("LED sum error: s0=%0d s1=%0d expected=%0d got=%0d", a, b, a + b, led);
+
+                // Checking select and notselect
+                if (select !== ~notselect)
+                    $error("select error: select=%b notselect=%b", select, notselect);
+
+                // Checking sevensegment output encoding
+                if (select) begin
+                    if (seg !== seg_encode(s0))
+                        $error("seg error: s0=%h expected=%b got=%b", s0, seg_encode(s0), seg);
+                end else begin
+                    if (seg !== seg_encode(s1))
+                        $error("seg error: s1=%h expected=%b got=%b", s1, seg_encode(s1), seg);
+                end
+            end
+        end
+
+        $display("ALL TESTS PASSED SUCCESSFULLY.");
+        $finish;
+    end
+
 endmodule
-

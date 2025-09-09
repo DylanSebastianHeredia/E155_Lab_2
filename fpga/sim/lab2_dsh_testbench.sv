@@ -25,8 +25,8 @@ module lab2_dsh_testbench;
     always #5 clk = ~clk;
 
     // sevensegment decoder (duplicated from sevensegment.sv)
-    function automatic [6:0] seg_expected (input [3:0] value_holder);
-        case(value_holder)
+    function automatic [6:0] seg_expected (input [3:0]x);
+        case(x)
             4'h0: seg_expected = 7'b1000000;
             4'h1: seg_expected = 7'b1111001;
             4'h2: seg_expected = 7'b0100100;
@@ -64,11 +64,11 @@ module lab2_dsh_testbench;
                 // Checking LED sum
                 if (led !== a + b)
                     $error("LED SUM ERROR: s0=%0d s1=%0d expected=%0d got=%0d", a, b, a + b, led);
-
+                
                 // Checking select and notselect (Right and Left sides of dual 7-segment display)
                 if (select !== ~notselect)
                     $error("SELECT ERROR: select=%b notselect=%b", select, notselect);
-
+                
                 // Checking sevensegment output encoding
                 if (select) begin
                     if (seg !== seg_expected(s0))
@@ -87,6 +87,7 @@ module lab2_dsh_testbench;
     end
 
 endmodule
+
 
 
 

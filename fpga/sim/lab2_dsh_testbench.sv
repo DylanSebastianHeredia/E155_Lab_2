@@ -2,7 +2,7 @@
 // Sebastian Heredia, dheredia@g.hmc.edu
 // September 8, 2025
 // lab2_dsh_full_testbench.sv
-// lab2_dsh_testbench hold code for an automatic testbench for lab2_dsh.sv that tests all sums of s0 + s1 on LEDs,
+// lab2_dsh_testbench contains code for an automatic testbench for lab2_dsh.sv that tests all sums of s0 + s1 on LEDs,
 // validates 7-segment display outputs, and ensures select/notselect toggle correctly.
 
 `timescale 1ns/1ps
@@ -87,6 +87,7 @@ module lab2_dsh_testbench();
     end
 
 endmodule
+
 
 
 
